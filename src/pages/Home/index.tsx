@@ -1,20 +1,10 @@
 import type { NextPage } from 'next';
 import React, { useContext } from 'react';
-import styled from 'styled-components';
 import styles from '../../styles/Home.module.css';
 import { MyContext } from 'context/MyContextProvider';
 import Loader from '../../components/Loader';
 import { Planet } from '../../context/Interface';
-
-const MainStyled = styled.main`
-  align-items: center;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 1rem 0;
-`;
+import { MainStyled } from '../styled';
 
 const Home: NextPage = () => {
   const {
@@ -36,7 +26,7 @@ const Home: NextPage = () => {
             {isLoading ? (
               <Loader />
             ) : (
-              <div className="w-full p-2 my-2 glassmorphism">
+              <div className={`w-full px-2 py-2 ${styles.glassmorphism}`}>
                 <table className="table-auto border-collapse border border-slate-500 bg-transparent text-gray-200 text-sm">
                   <caption className="caption-top mb-2 text-2sm font-bold ">Planets</caption>
                   <thead>
@@ -98,9 +88,7 @@ const Home: NextPage = () => {
               ></div>
 
               <div
-                className={
-                  'inline-block max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-2xl glassmorphism'
-                }
+                className={`inline-block max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-2xl ${styles.glassmorphism}`}
               >
                 <div className="text-2sm font-bold mb-4 text-white">Detail Planet</div>
 
