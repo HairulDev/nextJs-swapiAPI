@@ -12,6 +12,7 @@ const Home: NextPage = () => {
     isLoading,
     handleDetailPlanet,
     detailPlanet,
+    currentPage,
     isModalOpen,
     closeModal,
     convertDateTime
@@ -27,7 +28,7 @@ const Home: NextPage = () => {
               <Loader />
             ) : (
               <div className={`w-full px-2 py-2 ${styles.glassmorphism}`}>
-                <table className="table-auto border-collapse border border-slate-500 bg-transparent text-gray-200 text-sm">
+                <table className="w-full table-auto border-collapse border border-slate-500 bg-transparent text-gray-200 text-sm p-0 m-0">
                   <caption className="caption-top mb-2 text-2sm font-bold ">Planets</caption>
                   <thead>
                     <tr>
@@ -35,7 +36,6 @@ const Home: NextPage = () => {
                       <th className="px-4 py-2 border border-slate-600">Rotation period</th>
                       <th className="px-4 py-2 border border-slate-600">Orbital period</th>
                       <th className="px-4 py-2 border border-slate-600">Diameter</th>
-                      <th className="px-4 py-2 border border-slate-600">Gravity</th>
                       <th className="px-4 py-2 border border-slate-600">Surface water</th>
                       <th className="px-4 py-2 border border-slate-600">Population</th>
                       <th className="px-4 py-2 border border-slate-600">Detail</th>
@@ -55,9 +55,6 @@ const Home: NextPage = () => {
                           {planet.diameter}
                         </td>
                         <td className="border px-4 py-2 border border-slate-600">
-                          {planet.gravity}
-                        </td>
-                        <td className="border px-4 py-2 border border-slate-600">
                           {planet.surface_water}
                         </td>
                         <td className="border px-4 py-2 border border-slate-600">
@@ -67,12 +64,28 @@ const Home: NextPage = () => {
                           className="border px-4 py-2 border border-slate-600"
                           onClick={() => handleDetailPlanet(planet.url)}
                         >
-                          Detail
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="w-4 h-4"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"
+                            />
+                          </svg>
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
+                <div className="text-gray-400 text-sm m-2">
+                  Page {currentPage} / {Math.ceil(planets.count / 10)}
+                </div>
               </div>
             )}
           </div>

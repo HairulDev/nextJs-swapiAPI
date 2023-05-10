@@ -53,10 +53,7 @@ const MyContextProvider: FC = ({ children }) => {
     const day = date.getUTCDate();
     const month = date.getUTCMonth() + 1;
     const year = date.getUTCFullYear();
-    const hours = date.getUTCHours();
-    const minutes = date.getUTCMinutes();
-    const seconds = date.getUTCSeconds();
-    return `${day}-${month}-${year} / ${hours}:${minutes}:${seconds}`;
+    return `${day}-${month}-${year}`;
   };
 
   const handleClick = (page: number) => setCurrentPage(page);

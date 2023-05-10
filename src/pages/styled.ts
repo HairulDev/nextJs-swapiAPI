@@ -6,6 +6,6 @@ export const MainStyled = styled.main`
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 80vh;
   padding: 1rem 0;
 `;
