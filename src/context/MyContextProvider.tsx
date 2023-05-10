@@ -1,47 +1,15 @@
 import React, { createContext, FC, useEffect, useState } from 'react';
 import Axios from 'axios';
+import { Planet, PlanetResult, ContextProps } from './Interface';
 
 const API = Axios.create({ baseURL: 'https://swapi.dev/api' });
-
-interface Planet {
-  name: string;
-  rotation_period: string;
-  orbital_period: string;
-  diameter: string;
-  climate: string;
-  gravity: string;
-  terrain: string;
-  surface_water: string;
-  population: string;
-  created: string;
-  url: string;
-}
-
-interface PlanetResult {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: Planet[];
-}
-
-interface ContextProps {
-  planets: PlanetResult;
-  currentPage: number;
-  handleClick: (currentPage: number) => void;
-  isLoading: boolean;
-  handleDetailPlanet: (url: string) => void;
-  detailPlanet: Planet | null;
-  closeModal: () => void;
-  isModalOpen: boolean;
-  convertDateTime: (dateString: string) => string;
-}
 
 const defaultContext: ContextProps = {
   planets: {
     count: 0,
     next: null,
     previous: null,
-    results: [],
+    results: []
   },
   currentPage: 1,
   handleClick: () => {},
@@ -50,7 +18,7 @@ const defaultContext: ContextProps = {
   detailPlanet: null,
   closeModal: () => {},
   isModalOpen: false,
-  convertDateTime: () => '',
+  convertDateTime: () => ''
 };
 
 export const MyContext = createContext(defaultContext);
@@ -69,11 +37,8 @@ const MyContextProvider: FC = ({ children }) => {
       setPlanets(data);
       setIsLoading(false);
     };
-
     fetchData();
   }, [currentPage]);
-
-  const handleClick = (page: number) => setCurrentPage(page);
 
   const handleDetailPlanet = async (url: string) => {
     setIsLoading(true);
@@ -94,6 +59,8 @@ const MyContextProvider: FC = ({ children }) => {
     return `${day}-${month}-${year} / ${hours}:${minutes}:${seconds}`;
   };
 
+  const handleClick = (page: number) => setCurrentPage(page);
+
   const closeModal = () => setIsModalOpen(false);
 
   const contextValue: ContextProps = {
@@ -105,7 +72,7 @@ const MyContextProvider: FC = ({ children }) => {
     detailPlanet,
     closeModal,
     isModalOpen,
-    convertDateTime,
+    convertDateTime
   };
 
   return <MyContext.Provider value={contextValue}>{children}</MyContext.Provider>;
