@@ -1,6 +1,6 @@
 import React from 'react';
-import { MainStyled } from '../pages/styled';
 import styles from '../styles/Home.module.css';
+import MainStyled from '@pages/styled';
 
 const Loader: React.FC = () => (
   <div className={styles.container}>

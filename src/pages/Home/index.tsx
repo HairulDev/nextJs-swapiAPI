@@ -4,7 +4,7 @@ import styles from '../../styles/Home.module.css';
 import { MyContext } from 'context/MyContextProvider';
 import Loader from '../../components/Loader';
 import { Planet } from '../../context/Interface';
-import { MainStyled } from '../styled';
+import MainStyled from '@pages/styled';
 
 const Home: NextPage = () => {
   const {
